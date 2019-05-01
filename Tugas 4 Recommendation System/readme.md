@@ -27,8 +27,8 @@ Tugas 4.ipynb adalah file jupyter notebook mengenai komputasi rekomendasi sistem
   Untuk menampilkan rekomendasi item sejumlah <item_count> kepada user <user_id>
   ![Gambar 1](./img/get_top_rating.PNG)
 
-### 2. localhost:5432/<user_id>/recommendeditem/<item_count> 
-  Untuk menampilkan item <item> yang direkomendasi  kepada user <user_id> sejumlah <user_count>
+### 2. localhost:5432/<item_id>/recommendeduser/<user_count> 
+  Untuk menampilkan item <item_id> yang direkomendasi  kepada user <user_id> sejumlah <user_count>
   ![Gambar 2](./img/get_top_item_recommended.PNG)
 
 ### 3. localhost:5432/<user_id>/getratings/<item_id> 
