@@ -21,7 +21,7 @@ server.py bertujuan menginisialisasi server web CherryPy setelah membuat konteks
 Tugas 4.ipynb adalah file jupyter notebook mengenai komputasi rekomendasi sistem dengan tahapan tahapannya.
 
 
-##Contoh Penggunaan Recommendation System
+## Contoh Penggunaan Recommendation System
 
 ### 1. localhost:5432/<user_id>/recommendeditem/<item_count> 
   Untuk menampilkan rekomendasi item sejumlah <item_count> kepada user <user_id>
