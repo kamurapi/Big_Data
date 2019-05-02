@@ -2,7 +2,7 @@
 
 ## Dataset
 Dataset : http://jmcauley.ucsd.edu/data/renttherunway/renttherunway_final_data.json.gz  
- :: dataset tersebut berisi feedback dari transaksi clothung fit RentTheRunway
+ :: dataset tersebut berisi feedback dari transaksi clothing fit RentTheRunway
 
 
 
