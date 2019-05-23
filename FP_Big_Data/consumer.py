@@ -1,19 +1,34 @@
 from kafka import KafkaConsumer
-from pymongo import MongoClient
 from json import loads
+import os
 
 consumer = KafkaConsumer(
-    'numtest',
+    'metacritic', 
      bootstrap_servers=['localhost:9092'],
      auto_offset_reset='earliest',
      enable_auto_commit=True,
      group_id='my-group',
      value_deserializer=lambda x: loads(x.decode('utf-8')))
 
-client = MongoClient('localhost:27017')
-collection = client.numtest.numtest
+folder_path = os.path.join(os.getcwd(), 'final-dataset')
+batch_limit = 100000
+batch_counter = 0
+batch_number = 0
 
-for message in consumer:
-    message = message.value
-    collection.insert_one(message)
-    print('{} added to {}'.format(message, collection))
+try:
+    while True:
+        for message in consumer:
+            if batch_counter >= batch_limit:
+                batch_counter = 0
+                batch_number += 1
+                writefile.close()
+            if batch_counter == 0:
+                file_path = os.path.join(folder_path, ('result' + str(batch_number) + '.txt'))
+                writefile = open(file_path, "w", encoding="utf-8")
+            message = message.value
+            writefile.write(message)
+            batch_counter += 1
+            print('current batch : ' + str(batch_number) + ' current data for this batch : ' + str(batch_counter))
+except KeyboardInterrupt:
+    writefile.close()
+print('Keyboard Interrupt called by user, exiting.....')
