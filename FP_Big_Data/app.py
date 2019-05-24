@@ -11,27 +11,24 @@ logger = logging.getLogger(__name__)
 
 from flask import Flask, request
 
-@main.route("/<int:user_id>/recommendeditem/<int:item_count>", methods=["GET"])
-def top_rating(user_id, item_count):
-    """Recommends top several item (total item is item_count) to a user"""
+@main.route("/<int:data_type>/<int:user_id>/recommendeditem/<int:item_count>", methods=["GET"])
+def top_rating(data_type,user_id, item_count):
     logger.debug("User %s top item's rating requested", user_id)
-    top_rated = recommendation_engine.get_top_ratings(user_id, item_count)
+    top_rated = recommendation_engine.get_top_ratings(data_type,user_id, item_count)
     return json.dumps(top_rated)
 
 
-@main.route("/<int:item_id>/recommendeduser/<int:user_count>", methods=["GET"])
-def top_item(item_id,user_count):
-    """Recommends a item to top several user (total user is user_count)"""
+@main.route("/<int:data_type>/<int:item_id>/recommendeduser/<int:user_count>", methods=["GET"])
+def top_item(data_type,item_id,user_count):
     logger.debug("Item %s top user recommending", item_id)
-    top_rated = recommendation_engine.get_top_item_recommend(item_id, user_count)
+    top_rated = recommendation_engine.get_top_item_recommend(data_type,item_id, user_count)
     return json.dumps(top_rated)
 
 
-@main.route("/<int:user_id>/getratings/<int:item_id>", methods=["GET"])
-def item_rating(user_id, item_id):
-    """Given a user_id and a item_id, get ratings for them"""
+@main.route("/<int:data_type>/<int:user_id>/getratings/<int:item_id>", methods=["GET"])
+def item_rating(data_type,user_id, item_id):
     logger.debug("User %s rating requested for item %s", user_id, item_id)
-    ratings = recommendation_engine.get_ratings_for_item_ids(user_id, item_id)
+    ratings = recommendation_engine.get_ratings_for_item_ids(data_type,user_id, item_id)
     return json.dumps(ratings)
 
 def create_app(spark_session, dataset_path):
